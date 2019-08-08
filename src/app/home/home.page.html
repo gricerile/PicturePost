@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/profile">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,3 +15,14 @@
     <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title ></ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/post">
+        <ion-icon slot="icon-only"  name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

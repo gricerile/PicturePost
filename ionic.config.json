@@ -1,5 +1,8 @@
 {
   "name": "PicturePost-Ionic",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }
