@@ -39,7 +39,7 @@ export class PostPage implements OnInit {
   postPhoto() {
     // console.log('Post Function was called.');
     // this.input = document.getElementById('input').nodeValue;
-    console.log(this.input);
+    // console.log(this.input);
      // tslint:disable-next-line:triple-equals
     if (this.input != '' || this.input != null) {
     PostService.post(this.currentImage, this.input);

@@ -17,16 +17,58 @@ export class PostService {
 // }
 // }
 // }
-
+    private static imgArray = new Array();
 
   constructor() { }
+
+  static getImageArray() {
+      return this.imgArray;
+  }
 
   // @ts-ignore
   static post(currentImage: any, input: string): Promise<void> {
     const userID = firebase.auth().currentUser.uid;
-    firebase.storage().ref('images/' + userID + '/' + input).putString(currentImage, 'data_url');
+    this.imgArray.push(currentImage);
+    // firebase.storage().ref('images/' + userID + '/' + input).putString(currentImage, 'data_url');
     // let imageRef = firebase.storage().ref('images/' + userID + '/' + input);
     // let uploadTask = imageRef.put(currentImage);
     // console.log('post service reached');
+    return new Promise((resolve, reject) => {
+      let fileRef = firebase.storage().ref('images/' + userID + '/' + input);
+
+      let uploadTask = fileRef.putString(currentImage, 'data_url');
+
+      uploadTask.on(
+          'state_changed',
+          // tslint:disable-next-line:variable-name
+          (_snapshot: any) => {
+            console.log(
+                'snapshot progess ' +
+                (_snapshot.bytesTransferred / _snapshot.totalBytes) * 100
+            );
+          },
+          // tslint:disable-next-line:variable-name
+          _error => {
+            console.log(_error);
+            reject(_error);
+          },
+          () => {
+            // completion...
+            // @ts-ignore
+            resolve(uploadTask.snapshot);
+          }
+      );
+    });
   }
+
+    getUserImages() {
+        // let images = Array<any>();
+        // const userID = firebase.auth().currentUser.uid;
+        // let imagesRef = firebase.storage().ref('images/' + userID );
+        // // tslint:disable-next-line:only-arrow-functions
+        // imagesRef.getDownloadURL().then(function(url) {
+        //     images.push(url);
+        // });
+        // return images;
+    }
 }

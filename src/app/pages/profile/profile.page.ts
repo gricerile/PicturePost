@@ -3,30 +3,40 @@ import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/user/auth.service';
 import { ProfileService } from '../../services/user/profile.service';
 import { Router } from '@angular/router';
+import { PostService } from '../../services/user/post.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
+
 export class ProfilePage implements OnInit {
   public userProfile: any;
   public birthDate: Date;
+  // private images = new Array();
+
   constructor(
       private alertCtrl: AlertController,
       private authService: AuthService,
       private profileService: ProfileService,
-      private router: Router
+      private router: Router,
+      private post: PostService,
   ) {}
 
   ngOnInit() {
     this.profileService
         .getUserProfile()
         .get()
-        .then( userProfileSnapshot => {
+        .then(userProfileSnapshot => {
           this.userProfile = userProfileSnapshot.data();
           this.birthDate = userProfileSnapshot.data().birthDate;
         });
+    // @ts-ignore
+    // this.images = this.post.getUserImages();
+    // if (this.images.length > 0) {
+    //   console.log(this.images[0]);
+    // }
   }
 
   logOut(): void {
