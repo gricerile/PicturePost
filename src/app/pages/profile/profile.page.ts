@@ -129,4 +129,19 @@ export class ProfilePage implements OnInit {
     });
     await alert.present();
   }
+
+    viewImage() {
+      console.log('View image initiated');
+      let url = this.post.getImageURL();
+      console.log('url' + url);
+      let imageDisplay = document.getElementById('hellImage');
+      let src = imageDisplay.getAttribute('src');
+      src = url;
+      // tslint:disable-next-line:max-line-length
+      let downloadURL = 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Fhell?alt=media&token=b962ffe8-2c84-4e25-be4c-fbd6cbdff30e';
+      imageDisplay.setAttribute('src', downloadURL);
+      let src2 = imageDisplay.getAttribute('src');
+      console.log('src2 of image: ' + src2);
+      console.log('src of image: ' + src);
+    }
 }

@@ -10,6 +10,8 @@ import { ProfileService } from '../../services/user/profile.service';
 })
 export class PostService {
 
+  constructor() { }
+
 //   service firebase.storage {
 //   match /b/{bucket}/o {
 // match /{allPaths=**} {
@@ -18,8 +20,6 @@ export class PostService {
 // }
 // }
     private static imgArray = new Array();
-
-  constructor() { }
 
   static getImageArray() {
       return this.imgArray;
@@ -61,6 +61,12 @@ export class PostService {
     });
   }
 
+    static getImageURL() {
+        const userID = firebase.auth().currentUser.uid;
+        let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell');
+        return imagesRef.toString();
+    }
+
     getUserImages() {
         // let images = Array<any>();
         // const userID = firebase.auth().currentUser.uid;
@@ -70,5 +76,13 @@ export class PostService {
         //     images.push(url);
         // });
         // return images;
+    }
+
+    getImageURL() {
+        console.log('getImageURL initiated');
+        const userID = firebase.auth().currentUser.uid;
+        let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell').getDownloadURL();
+        console.log(imagesRef);
+        return imagesRef.toString();
     }
 }
