@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -8,9 +8,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="block" (click)="takePhoto()">Take Photo</ion-button>
-  <img [src]="currentImage" height="200" alt="Take Photo">
-  <ion-input type="text" [(ngModel)]="input">Enter Name of Picture: </ion-input>
-  <ion-button expand="block" (click)="postPhoto()">Post Photo</ion-button>
-  <ion-button expand="block" (click)="deletePhoto()">Delete Photo</ion-button>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="input">Enter Name of Picture: </ion-input>
+  </ion-item>
+    <ion-img [src]="currentImage" style="height: 75%" alt="Take Photo"></ion-img>
 </ion-content>
+
+<ion-footer>
+    <ion-button expand="block" (click)="takePhoto()">Take Photo</ion-button>
+    <ion-button expand="block" color="tertiary" (click)="postPhoto()">Post Photo</ion-button>
+    <ion-button expand="block" color="danger" (click)="deletePhoto()">Delete Photo</ion-button>
+</ion-footer>

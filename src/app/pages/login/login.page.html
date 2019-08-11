@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title align="center">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -46,17 +46,18 @@
     <ion-button
             (click)="loginUser(loginForm)"
             expand="block"
+            color="tertiary"
             [disabled]="!loginForm.valid"
     >
       Log In
     </ion-button>
   </form>
 
-  <ion-button expand="block" fill="clear" routerLink="/signup">
+  <ion-button expand="block" color="primary" routerLink="/signup">
     Create a new account?
   </ion-button>
 
-  <ion-button expand="block" fill="clear" routerLink="/reset-password">
+  <ion-button expand="block" color="success" routerLink="/reset-password">
     Forgot Your Password?
   </ion-button>
 </ion-content>

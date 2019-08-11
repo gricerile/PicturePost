@@ -79,7 +79,7 @@ export class PostService {
     }
 
     getImageURL() {
-        console.log('getImageURL initiated');
+        // console.log('getImageURL initiated');
         const userID = firebase.auth().currentUser.uid;
         let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell').getDownloadURL();
         console.log(imagesRef);
