@@ -4,7 +4,6 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/functions';
-import { ProfileService } from '../../services/user/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +12,6 @@ export class PostService {
 
   constructor() { }
 
-//   service firebase.storage {
-//   match /b/{bucket}/o {
-// match /{allPaths=**} {
-//   allow read, write: if request.auth != null;
-// }
-// }
-// }
 public imgArray = new Array();
 
   public getImageArray() {
@@ -31,10 +23,6 @@ public imgArray = new Array();
   public post(currentImage: any, input: string): Promise<void> {
     const userID = firebase.auth().currentUser.uid;
     this.imgArray.push(currentImage);
-    // firebase.storage().ref('images/' + userID + '/' + input).putString(currentImage, 'data_url');
-    // let imageRef = firebase.storage().ref('images/' + userID + '/' + input);
-    // let uploadTask = imageRef.put(currentImage);
-    // console.log('post service reached');
     return new Promise((resolve, reject) => {
       let fileRef = firebase.storage().ref('images/' + userID + '/' + input);
 
@@ -62,41 +50,17 @@ public imgArray = new Array();
     });
   }
 
-    getImageURLString() {
-        const userID = firebase.auth().currentUser.uid;
-        let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell');
-        return imagesRef.toString();
-    }
-
-    getUserImages() {
-        // let images = Array<any>();
-        // const userID = firebase.auth().currentUser.uid;
-        // let imagesRef = firebase.storage().ref('images/' + userID );
-        // // tslint:disable-next-line:only-arrow-functions
-        // imagesRef.getDownloadURL().then(function(url) {
-        //     images.push(url);
-        // });
-        // return images;
-    }
-
     getImageURL(path) {
         // console.log('getImageURL initiated');
         const userID = firebase.auth().currentUser.uid;
         return firebase.storage().ref(path).getDownloadURL();
-        //     (data) => {
-        //         console.log('hey');
-        //         console.log(data);
-        //         return data;
-        //     }
-        // );
-        // console.log(imagesRef);
-        // return imagesRef.toString();
     }
 
 
 
     getImages() {
       console.log('getImages has been entered');
+      // gets all of a single user's images
     // functions.storage.object().onChange()
       const userID = firebase.auth().currentUser.uid;
       let listRef = firebase.storage().ref('images/' + userID);
@@ -106,6 +70,7 @@ public imgArray = new Array();
   }
 
     getAllUserImages() {
+      // get list of all paths to every user
         let listRef = firebase.storage().ref('images');
         return listRef.listAll();
     }

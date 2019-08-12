@@ -38,7 +38,6 @@ export class PostPage implements OnInit {
 
   postPhoto() {
     // console.log('Post Function was called.');
-    // this.input = document.getElementById('input').nodeValue;
     // console.log(this.input);
     console.log(this.input);
     console.log(this.currentImage);

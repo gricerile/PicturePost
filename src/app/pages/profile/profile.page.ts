@@ -146,28 +146,12 @@ export class ProfilePage implements OnInit {
                 imageDisplay.setAttribute('src', data);
                 return data;
             });
-      // console.log('url' + url);
-
-      // let src = imageDisplay.getAttribute('src');
-      // let src = url;
-      // tslint:disable-next-line:max-line-length
-      // let downloadURL = 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Ftest1?alt=media&token=e1880579-c1ac-4a0c-bef8-b814a9992d3b';
-      // @ts-ignore
-
-      // let src2 = imageDisplay.getAttribute('src');
-      // console.log('src2 of image: ' + src2);
-      // console.log('src of image: ' + src);
-      // tslint:disable-next-line:max-line-length
-      // console.log('DownloadURL of image: ' + 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Fhell?alt=media&token=b962ffe8-2c84-4e25-be4c-fbd6cbdff30e');
-    }
+   }
 
     viewAllImages() {
     console.log('view images has been entered');
-    // let imageRef = any;
-    //   let array: Promise<any[]>;
       // tslint:disable-next-line:only-arrow-functions
     this.post.getImages().then(
-        // function(image) {
         (result) => {
             // console.log(result);
             for (let item of result.items) {
@@ -176,8 +160,6 @@ export class ProfilePage implements OnInit {
               this.imageRefsArray.push(url);
             }
             console.log(this.imageRefsArray);
-          // tslint:disable-next-line:no-unused-expression
-            // this.imageRefsArray.
         });
     }
 }

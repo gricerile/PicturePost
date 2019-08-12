@@ -19,7 +19,6 @@ export class HomePage {
 
   loadImages() {
     this.post.getAllUserImages().then(
-        // function(image) {
         (result) => {
           // console.log(result);
           for (let user of result.prefixes) {
