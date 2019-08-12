@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
+import 'firebase/functions';
 import { ProfileService } from '../../services/user/profile.service';
 
 @Injectable({
@@ -19,14 +20,15 @@ export class PostService {
 // }
 // }
 // }
-    private static imgArray = new Array();
+public imgArray = new Array();
 
-  static getImageArray() {
+  public getImageArray() {
       return this.imgArray;
   }
+  public addToArray(data: any) { this.imgArray.push(data); }
 
   // @ts-ignore
-  static post(currentImage: any, input: string): Promise<void> {
+  public post(currentImage: any, input: string): Promise<void> {
     const userID = firebase.auth().currentUser.uid;
     this.imgArray.push(currentImage);
     // firebase.storage().ref('images/' + userID + '/' + input).putString(currentImage, 'data_url');
@@ -60,7 +62,7 @@ export class PostService {
     });
   }
 
-    static getImageURL() {
+    getImageURLString() {
         const userID = firebase.auth().currentUser.uid;
         let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell');
         return imagesRef.toString();
@@ -77,10 +79,10 @@ export class PostService {
         // return images;
     }
 
-    getImageURL() {
+    getImageURL(path) {
         // console.log('getImageURL initiated');
         const userID = firebase.auth().currentUser.uid;
-        return firebase.storage().ref('images/' + userID + '/' + 'test1').getDownloadURL();
+        return firebase.storage().ref(path).getDownloadURL();
         //     (data) => {
         //         console.log('hey');
         //         console.log(data);
@@ -90,4 +92,16 @@ export class PostService {
         // console.log(imagesRef);
         // return imagesRef.toString();
     }
+
+
+
+    getImages() {
+      console.log('getImages has been entered');
+    // functions.storage.object().onChange()
+      const userID = firebase.auth().currentUser.uid;
+      let listRef = firebase.storage().ref('images/' + userID);
+
+        // tslint:disable-next-line:only-arrow-functions
+      return listRef.listAll();
+  }
 }

@@ -14,7 +14,7 @@ export class PostPage implements OnInit {
   currentImage: any;
   input: string;
 
-  constructor(private camera: Camera) { }
+  constructor(private camera: Camera, private post: PostService, ) { }
 
   ngOnInit() {
   }
@@ -40,11 +40,19 @@ export class PostPage implements OnInit {
     // console.log('Post Function was called.');
     // this.input = document.getElementById('input').nodeValue;
     // console.log(this.input);
-     // tslint:disable-next-line:triple-equals
-    if (this.input != '' || this.input != null || this.currentImage == null) {
-    PostService.post(this.currentImage, this.input);
-     } else {
+    console.log(this.input);
+    console.log(this.currentImage);
 
+    //  tslint:disable-next-line:triple-equals
+    if (this.input != undefined && this.currentImage != undefined) {
+      this.post.post(this.currentImage, this.input);
+      alert(
+            'The Picture has been Posted.'
+        );
+    } else {
+        alert(
+            'Please enter a name for the photo and/or take an image.'
+        );
     }
   }
 

@@ -83,14 +83,10 @@
     </ion-label>
   </ion-item>
 
-<!--  <ion-list>-->
-<!--    <ion-item *ngFor="let item of images">-->
-<!--      <ion-thumbnail slot="start">-->
-<!--        <ion-img [src]="item.src"></ion-img>-->
-<!--      </ion-thumbnail>-->
-<!--      <ion-label>{{item.text}}</ion-label>-->
-<!--    </ion-item>-->
-<!--  </ion-list>-->
-  <ion-button expand="block" color="primary" (click)="viewImage()">View Profile Photos</ion-button>
-  <img id="test1" alt="" src=''>
+  <ion-list style="text-align: center">
+  <ion-item  style="text-align: center" *ngFor="let item of imageRefsArray">
+      <ion-img style="height: 95%; text-align: center" [src]="item.i"></ion-img>
+    <ion-label>{{item.text}}</ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>

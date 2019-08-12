@@ -4,6 +4,8 @@ import { AuthService } from '../../services/user/auth.service';
 import { ProfileService } from '../../services/user/profile.service';
 import { Router } from '@angular/router';
 import { PostService } from '../../services/user/post.service';
+import * as firebase from 'firebase';
+// import any = jasmine.any;
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,7 @@ import { PostService } from '../../services/user/post.service';
 export class ProfilePage implements OnInit {
   public userProfile: any;
   public birthDate: Date;
-  // private images = new Array();
+  public imageRefsArray: any;
 
   constructor(
       private alertCtrl: AlertController,
@@ -22,7 +24,10 @@ export class ProfilePage implements OnInit {
       private profileService: ProfileService,
       private router: Router,
       private post: PostService,
-  ) {}
+  ) {
+    this.imageRefsArray = [];
+    this.viewAllImages();
+  }
 
   ngOnInit() {
     this.profileService
@@ -132,11 +137,12 @@ export class ProfilePage implements OnInit {
 
     viewImage() {
       // console.log('View image initiated');
-      let url = this.post.getImageURL().then(
+      // @ts-ignore
+      const url = this.post.getImageURL().then(
           (data) => {
                 console.log('hey');
                 console.log(data);
-                let imageDisplay = document.getElementById('test1');
+                const imageDisplay = document.getElementById('test1');
                 imageDisplay.setAttribute('src', data);
                 return data;
             });
@@ -153,5 +159,25 @@ export class ProfilePage implements OnInit {
       // console.log('src of image: ' + src);
       // tslint:disable-next-line:max-line-length
       // console.log('DownloadURL of image: ' + 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Fhell?alt=media&token=b962ffe8-2c84-4e25-be4c-fbd6cbdff30e');
+    }
+
+    viewAllImages() {
+    console.log('view images has been entered');
+    // let imageRef = any;
+    //   let array: Promise<any[]>;
+      // tslint:disable-next-line:only-arrow-functions
+    this.post.getImages().then(
+        // function(image) {
+        (result) => {
+            // console.log(result);
+            for (let item of result.items) {
+              // @ts-ignore
+              let url = firebase.storage().ref(item.location.path_).getDownloadURL();
+              this.imageRefsArray.push(url);
+            }
+            console.log(this.imageRefsArray);
+          // tslint:disable-next-line:no-unused-expression
+            // this.imageRefsArray.
+        });
     }
 }
