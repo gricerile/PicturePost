@@ -41,9 +41,11 @@ export class PostPage implements OnInit {
     // this.input = document.getElementById('input').nodeValue;
     // console.log(this.input);
      // tslint:disable-next-line:triple-equals
-    if (this.input != '' || this.input != null) {
+    if (this.input != '' || this.input != null || this.currentImage == null) {
     PostService.post(this.currentImage, this.input);
-     }
+     } else {
+      
+    }
   }
 
   deletePhoto() { this.currentImage = null; }

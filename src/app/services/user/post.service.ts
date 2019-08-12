@@ -37,7 +37,6 @@ export class PostService {
       let fileRef = firebase.storage().ref('images/' + userID + '/' + input);
 
       let uploadTask = fileRef.putString(currentImage, 'data_url');
-
       uploadTask.on(
           'state_changed',
           // tslint:disable-next-line:variable-name
@@ -81,8 +80,14 @@ export class PostService {
     getImageURL() {
         // console.log('getImageURL initiated');
         const userID = firebase.auth().currentUser.uid;
-        let imagesRef = firebase.storage().ref('images/' + userID + '/' + 'hell').getDownloadURL();
-        console.log(imagesRef);
-        return imagesRef.toString();
+        return firebase.storage().ref('images/' + userID + '/' + 'test1').getDownloadURL();
+        //     (data) => {
+        //         console.log('hey');
+        //         console.log(data);
+        //         return data;
+        //     }
+        // );
+        // console.log(imagesRef);
+        // return imagesRef.toString();
     }
 }

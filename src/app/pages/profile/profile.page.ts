@@ -132,18 +132,26 @@ export class ProfilePage implements OnInit {
 
     viewImage() {
       // console.log('View image initiated');
-      let url = this.post.getImageURL();
+      let url = this.post.getImageURL().then(
+          (data) => {
+                console.log('hey');
+                console.log(data);
+                let imageDisplay = document.getElementById('test1');
+                imageDisplay.setAttribute('src', data);
+                return data;
+            });
       // console.log('url' + url);
-      let imageDisplay = document.getElementById('hellImage');
-      let src = imageDisplay.getAttribute('src');
-      src = url;
+
+      // let src = imageDisplay.getAttribute('src');
+      // let src = url;
       // tslint:disable-next-line:max-line-length
-      let downloadURL = 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Ftest1?alt=media&token=e1880579-c1ac-4a0c-bef8-b814a9992d3b';
-      imageDisplay.setAttribute('src', downloadURL);
-      let src2 = imageDisplay.getAttribute('src');
+      // let downloadURL = 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Ftest1?alt=media&token=e1880579-c1ac-4a0c-bef8-b814a9992d3b';
+      // @ts-ignore
+
+      // let src2 = imageDisplay.getAttribute('src');
       // console.log('src2 of image: ' + src2);
-      console.log('src of image: ' + src);
+      // console.log('src of image: ' + src);
       // tslint:disable-next-line:max-line-length
-      console.log('DownloadURL of image: ' + 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Fhell?alt=media&token=b962ffe8-2c84-4e25-be4c-fbd6cbdff30e');
+      // console.log('DownloadURL of image: ' + 'https://firebasestorage.googleapis.com/v0/b/ionicpicturepostserver.appspot.com/o/images%2F0HAnAch8D2UY79hPE79bcvthGyo1%2Fhell?alt=media&token=b962ffe8-2c84-4e25-be4c-fbd6cbdff30e');
     }
 }
