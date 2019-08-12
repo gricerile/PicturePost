@@ -10,13 +10,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-img style="height: 75%" id="image2" src="https://www.economist.com/sites/default/files/images/print-edition/20170722_STP001_0.jpg"> </ion-img>
-  <br>
-  <ion-img style="height: 75%" id="image3" src="https://fyf.tac-cdn.net/images/products/small/BF116-11KM.jpg?auto=webp&quality=75"> </ion-img>
-  <br>
-  <ion-img style="height: 75%" id="image1" src="https://i.kym-cdn.com/entries/icons/original/000/021/155/Fish_wearing_a_chicken_smoking_a_cigarette_cover.jpg"> </ion-img>
-  <br>
-  <ion-img style="height: 75%" id="image4" src="https://fyf.tac-cdn.net/images/products/large/BF216-11KM.jpg?auto=webp&quality=60"> </ion-img>
+<!--  <ion-img style="height: 75%" id="image2" src="https://www.economist.com/sites/default/files/images/print-edition/20170722_STP001_0.jpg"> </ion-img>-->
+<!--  <br>-->
+<!--  <ion-img style="height: 75%" id="image3" src="https://fyf.tac-cdn.net/images/products/small/BF116-11KM.jpg?auto=webp&quality=75"> </ion-img>-->
+<!--  <br>-->
+<!--  <ion-img style="height: 75%" id="image1" src="https://i.kym-cdn.com/entries/icons/original/000/021/155/Fish_wearing_a_chicken_smoking_a_cigarette_cover.jpg"> </ion-img>-->
+<!--  <br>-->
+<!--  <ion-img style="height: 75%" id="image4" src="https://fyf.tac-cdn.net/images/products/large/BF216-11KM.jpg?auto=webp&quality=60"> </ion-img>-->
+  <ion-list style="text-align: center">
+    <ion-item  style="text-align: center" *ngFor="let item of imageRefsArray">
+      <ion-img style="height: 95%; text-align: center" [src]="item.i"></ion-img>
+      <ion-label>{{item.text}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

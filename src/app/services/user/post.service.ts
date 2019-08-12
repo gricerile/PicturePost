@@ -104,4 +104,9 @@ public imgArray = new Array();
         // tslint:disable-next-line:only-arrow-functions
       return listRef.listAll();
   }
+
+    getAllUserImages() {
+        let listRef = firebase.storage().ref('images');
+        return listRef.listAll();
+    }
 }
