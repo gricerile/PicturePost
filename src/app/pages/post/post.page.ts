@@ -44,7 +44,7 @@ export class PostPage implements OnInit {
     if (this.input != '' || this.input != null || this.currentImage == null) {
     PostService.post(this.currentImage, this.input);
      } else {
-      
+
     }
   }
 
